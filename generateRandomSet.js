@@ -8,7 +8,7 @@ var fs = require('fs');
  * Initialization of global variables
  */
 var setArray = [];
-var sizeOfSetArray = 10;
+var sizeOfSetArray = 100;
 
 
 /**
@@ -33,8 +33,8 @@ function getRandomDigits (length) {
 function getNewSet() {
     var tempSet = new Set();
 
-    for (var i=0; i < getRandomInt(4, 12); i++) {
-        tempSet.add(getRandomDigits(2)); //Add randomly generated 15-digit number
+    for (var i=0; i < getRandomInt(700, 1500); i++) {
+        tempSet.add(getRandomDigits(15)); //Add randomly generated 15-digit number
     }
 
     return {set: Array.from(tempSet), size: tempSet.size};

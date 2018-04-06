@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/cezennia/setChecker/issues"
   },
-  "homepage": "https://github.com/cezennia/setChecker#readme"
+  "homepage": "https://github.com/cezennia/setChecker#readme",
+  "dependencies": {
+    "jaccard": "^0.4.0",
+    "jaccard-index": "^0.2.0"
+  }
 }
