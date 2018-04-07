@@ -12,6 +12,15 @@ var verifiedSetArray = [];
 var desertedSetArray = [];
 var initialVerifiedSet = [1, 2, 3, 8];
 
+try {
+    var verifiedSetFromFile = JSON.parse(fs.readFileSync('./verifiedSet.json', 'utf8'))
+} catch (e) {
+    console.error(e.message);
+}
+
+//set verified set using previously verified sets
+verifiedSetArray = verifiedSetFromFile ? ( (verifiedSetFromFile.length !== 0 ) ? verifiedSetFromFile : [{uuid: 1, set: initialVerifiedSet}]) : [{uuid: 1, set: initialVerifiedSet}];
+
 
 /**
  * Check the similarity of two sets
@@ -26,10 +35,11 @@ function areSetsSimilar (setA, setB) {
     let newSet = new Set(setB);
 
     let intersection = setA.filter(element => newSet.has(element)); 
-    let union = new Set([...setA, ...setB]);
-    let percentSimilarity = intersection.length / union.size; //calculating the jaccord distance
+    // let union = new Set([...setA, ...setB]);
+    let percentSimilarity1 = intersection.length / setA.length; //calculating the jaccord distance1
+    let percentSimilarity2 = intersection.length / setB.length; //calculating the jaccord distance2
 
-    return 0.5 < percentSimilarity;
+    return (0.5 < percentSimilarity1 || 0.5 < percentSimilarity2);
 
     // return 0.5 < jaccard2().index(setA, setB);
 }
@@ -52,7 +62,7 @@ function isSimilarToVerified (_set) {
 
 function verifyArrays (someRandomSets) {
     var tempArray = [];
-    verifiedSetArray = (verifiedSetArray.length === 0) ? [{uuid: 1, set: initialVerifiedSet}] : verifiedSetArray;
+    // verifiedSetArray = (verifiedSetArray.length === 0) ? [{uuid: 1, set: initialVerifiedSet}] : verifiedSetArray;
 
     for (var i = 0; i < someRandomSets.length; i++) {
         //if they aren't similar, add new set to set of verified numbers

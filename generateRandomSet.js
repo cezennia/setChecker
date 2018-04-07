@@ -8,7 +8,7 @@ var fs = require('fs');
  * Initialization of global variables
  */
 var setArray = [];
-var sizeOfSetArray = 100;
+var sizeOfSetArray = 200;
 
 
 /**
